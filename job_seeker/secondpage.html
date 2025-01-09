@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labour Link</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            text-align: center;
+            padding: 50px;
+            font-family: Arial, sans-serif;
+            background: url('bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+        }
+        h1 {
+            color: #fff;
+            margin-bottom: 30px;
+        }
+        p {
+            font-size: 18px;
+            color: #ddd;
+            margin-bottom: 30px;
+        }
+        .button {
+            background-color: #ff6f61;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 5px;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .button:hover {
+            background-color: #ff4d4d;
+            transform: translateY(-5px);
+        }
+        .login-link {
+            color: #ff6f61;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .login-link:hover {
+            color: #fff;
+        }
+        .image-container {
+            margin-bottom: 30px;
+        }
+        .image-container img {
+            width: 200px;
+            height: auto;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Labour Link</h1>
+        <p>Connecting workers to opportunities</p>
+        <div class="image-container">
+            
+        </div>
+        <div>
+            <button class="button" onclick="window.location.href='register.html';">Job Seeker</button>
+            <button class="button" onclick="window.location.href='recreg.html';">Recruiter</button>
+        </div>
+        <p>Already have an account? <a class="login-link" href="login.html">Login</a></p>
+    </div>
+</body>
+</html>

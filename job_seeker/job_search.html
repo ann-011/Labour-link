@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LabourLink - Find Jobs</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .search-bar {
+            padding: 20px;
+            text-align: center;
+            background-color: #007bff;
+        }
+
+        .search-bar input[type="text"] {
+            width: 250px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .search-bar button {
+            padding: 10px;
+            background-color: #0069d9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .search-bar button:hover {
+            background-color: #0056b3;
+        }
+
+        .categories {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .categories h2 {
+            margin-bottom: 20px;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .category-card {
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .category-card img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 10px;
+        }
+
+        .category-card:hover {
+            background-color: #f1f1f1;
+        }
+
+        .category-card p {
+            font-size: 18px;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Search Online Jobs for Skilled Workers</h1>
+    </div>
+
+    <div class="search-bar">
+        <input type="text" placeholder="Enter Job Title">
+        <input type="text" placeholder="Enter Company">
+        <button>Search</button>
+    </div>
+
+    <div class="categories">
+        <h2>Popular Job Categories</h2>
+        <div class="category-grid">
+            <div class="category-card">
+                <img src="painter-icon.png" alt="Painter">
+                <p>Painter</p>
+            </div>
+            <div class="category-card">
+                <img src="carpenter-icon.png" alt="Carpenter">
+                <p>Carpenter</p>
+            </div>
+            <div class="category-card">
+                <img src="plumber-icon.png" alt="Plumber">
+                <p>Plumber</p>
+            </div>
+            <div class="category-card">
+                <img src="electrician-icon.png" alt="Electrician">
+                <p>Electrician</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

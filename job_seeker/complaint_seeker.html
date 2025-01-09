@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complaint Registration</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Optional CSS for styling -->
+</head>
+<body>
+    <div class="container">
+        <h2>Complaint Registration Form</h2>
+        <form action="submit_complaint.php" method="POST">
+            <input type="hidden" name="s_id" value="<?php echo $seeker_id; ?>"> <!-- PHP to auto-fill seeker ID -->
+
+            <label for="recruiter_id">Select Recruiter:</label>
+            <select name="recruiter_id" id="rec_id" required>
+                <option value="">Select a recruiter</option>
+                <!-- Populate with recruiters from the database -->
+                <?php
+                // Example PHP to fetch recruiters from the database
+                $sql = "SELECT rec_id, name FROM rec_reg";
+                $result = mysqli_query($conn, $sql);
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "<option value='" . $row['rec_id'] . "'>" . $row['name'] . "</option>";
+                }
+                ?>
+            </select>
+
+            <label for="complaint_text">Complaint:</label>
+            <textarea name="complaint_text" id="complaint_text" rows="5" required></textarea>
+
+            <button type="submit">Submit Complaint</button>
+        </form>
+    </div>
+</body>
+</html>

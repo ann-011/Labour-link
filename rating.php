@@ -1,0 +1,148 @@
+<?php
+// Start the session
+session_start();
+
+// Check if the user is logged in and their email is stored in the session
+$loggedInEmail = isset($_SESSION['user_email']) ? $_SESSION['user_email'] : '';
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rate and Review</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .back-button {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: green;
+            font-size: 18px;
+            margin: 20px;
+            font-weight: bold;
+        }
+        .back-button:hover {
+            color: #4CAF50;
+        }
+        .back-button .arrow {
+            margin-right: 8px;
+            font-size: 20px;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .form-group button {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #45a049;
+        }
+        .rating-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        .stars {
+            display: flex;
+            justify-content: center;
+            flex-direction: row-reverse;
+        }
+        .stars input {
+            display: none;
+        }
+        .stars label {
+            font-size: 30px;
+            cursor: pointer;
+        }
+        .stars label:before {
+            content: '\2605';
+            display: inline-block;
+        }
+        .stars input:checked ~ label:before {
+            color: gold;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Back Button -->
+<a href="rec_home.html" class="back-button">
+    <span class="arrow">&#8592;</span> Back
+</a>
+
+<div class="container">
+    <h1>Complaints</h1>
+    <form action="rating.php" method="POST">
+        <div class="form-group">
+            <label for="complainer_email">Your Email:</label>
+            <!-- Automatically fill in the email using PHP -->
+            <input type="email" id="complainer_email" name="complainer_email" value="<?php echo htmlspecialchars($loggedInEmail); ?>" required readonly>
+        </div>
+        <div class="form-group">
+            <label for="complainer_role">Your Role:</label>
+            <input type="text" id="complainer_role" name="complainer_role" required>
+        </div>
+        <div class="form-group">
+            <label for="complain_against">Complain Against (Email):</label>
+            <input type="email" id="complain_against" name="complain_against" required>
+        </div>
+        <div class="form-group">
+            <label for="complaint">Complaint:</label>
+            <textarea id="complaint" name="complaint" rows="5" required></textarea>
+        </div>
+        <div class="form-group rating-wrapper">
+            <label>Rating:</label>
+            <div class="stars">
+                <input type="radio" id="star5" name="rating" value="5">
+                <label for="star5"></label>
+                <input type="radio" id="star4" name="rating" value="4">
+                <label for="star4"></label>
+                <input type="radio" id="star3" name="rating" value="3">
+                <label for="star3"></label>
+                <input type="radio" id="star2" name="rating" value="2">
+                <label for="star2"></label>
+                <input type="radio" id="star1" name="rating" value="1">
+                <label for="star1"></label>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit">Submit Complaint</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

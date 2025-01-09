@@ -1,0 +1,35 @@
+<?php
+// Database connection
+$servername = "localhost"; 
+$username = "root";        
+$password = "";            
+$dbname = "labourlink";    
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Fetch job details like job title, description, wage, salary, etc., from job_posting table
+$sql = "SELECT job_id, job_title, description, wage, salary, location FROM job_postings";
+$result = $conn->query($sql);
+
+// Initialize an array to hold job data
+$jobs = [];
+
+if ($result->num_rows > 0) {
+    // Fetch each row and add to jobs array
+    while($row = $result->fetch_assoc()) {
+        $jobs[] = $row;
+    }
+}
+
+// Close the connection
+$conn->close();
+
+// Return data as JSON
+echo json_encode($jobs);
+?>

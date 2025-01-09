@@ -1,0 +1,66 @@
+<?php
+// Start the session
+session_start();
+
+// Include database connection (update with your credentials)
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "labourlink";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Assuming seeker is logged in and `job_id` is passed via POST method
+$seeker_email = $_SESSION['email'];  // Seeker's email from session
+$job_id = $_POST['job_id'];  // The ID of the job seeker is applying for
+
+// Fetch the number of openings for the specific job
+$query = "SELECT openings FROM job_postings WHERE job_id = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $job_id);
+$stmt->execute();
+$stmt->bind_result($openings);
+$stmt->fetch();
+$stmt->close();
+
+if ($openings > 0) {
+    // Decrease the number of openings by 1
+    $new_openings = $openings - 1;
+
+    // Update the job_postings table
+    $update_query = "UPDATE job_postings SET openings = ? WHERE job_id = ?";
+    $update_stmt = $conn->prepare($update_query);
+    $update_stmt->bind_param("ii", $new_openings, $job_id);
+
+    if ($update_stmt->execute()) {
+        // Successfully updated openings, now record the application in the `applied` table
+        $insert_query = "INSERT INTO job_applications(seeker_email, job_id, application_date) VALUES (?, ?, NOW())";
+        $insert_stmt = $conn->prepare($insert_query);
+        $insert_stmt->bind_param("si", $seeker_email, $job_id);
+
+        if ($insert_stmt->execute()) {
+            echo "Application submitted successfully! Remaining openings: " . $new_openings;
+        } else {
+            echo "Error: Unable to submit application. " . $insert_stmt->error;
+        }
+
+        $insert_stmt->close();
+    } else {
+        echo "Error: Unable to update job openings. " . $update_stmt->error;
+    }
+
+    $update_stmt->close();
+} else {
+    // No openings left for this job
+    echo "Sorry, no openings left for this job.";
+}
+
+// Close the database connection
+$conn->close();
+?>

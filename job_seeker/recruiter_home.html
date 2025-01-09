@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seeker Home</title>
+    <style>
+        /* Simple card styling */
+        .card {
+            width: 200px;
+            padding: 20px;
+            margin: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- First Card: Job Listings -->
+    <div class="card" onclick="goToPage('job-listings.php')">
+        <h3>Job Listings</h3>
+        <p>View available job opportunities</p>
+    </div>
+
+    <!-- Second Card: Profile -->
+    <div class="card" onclick="goToPage('seeker-profile.php')">
+        <h3>Your Profile</h3>
+        <p>Manage your profile details</p>
+    </div>
+
+    <!-- Third Card: Applications -->
+    <div class="card" onclick="goToPage('application-history.php')">
+        <h3>Application History</h3>
+        <p>View your past job applications</p>
+    </div>
+
+    <!-- Fourth Card: Settings -->
+    <div class="card" onclick="goToPage('settings.php')">
+        <h3>Settings</h3>
+        <p>Adjust your account settings</p>
+    </div>
+
+    <script>
+        // Function to navigate to the next page
+        function goToPage(pageUrl) {
+            window.location.href = pageUrl;
+        }
+    </script>
+
+</body>
+</html>

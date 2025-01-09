@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painter Jobs - LabourLink</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .job-listings {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .job-listing {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .job-listing h2 {
+            font-size: 20px;
+            color: #333;
+        }
+
+        .job-listing p {
+            margin: 10px 0;
+            color: #666;
+        }
+
+        .apply-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        .apply-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .back-btn {
+            background-color: #6c757d;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .back-btn:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>Available Painter Jobs</h1>
+    </div>
+
+    <!-- Job Listings -->
+    <div class="job-listings">
+        <?php
+// Establish a connection to the database (assumes $conn is your connection object)
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Query to fetch Painter jobs from job_posting table
+$sql = "SELECT job_title, location FROM job_posting WHERE job_title LIKE '%Painter%'";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // Loop through all painter job records
+    while ($row = $result->fetch_assoc()) {
+        echo "<div>";
+        echo "<h3>" . htmlspecialchars($row['job_title']) . "</h3>";
+        echo "<p>Location: " . htmlspecialchars($row['location']) . "</p>";
+        echo "<button>Apply Now</button>";
+        echo "</div><br>";
+    }
+} else {
+    echo "<p>No Painter jobs available at the moment.</p>";
+}
+
+// Close the database connection
+$conn->close();
+?>
+
+<a href='home.php'><button>Back to Home</button></a>
